@@ -21,6 +21,9 @@ namespace Graph
         Edge(void);
         Edge(const Edge&);
         Edge(int, int, int);
+        Edge& operator=(int);
+        Edge& operator=(Edge);
+
         //TODO
         Edge& operator+=(int);
         Edge& operator-=(int);
