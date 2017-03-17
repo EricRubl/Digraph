@@ -9,6 +9,8 @@
 #include <iterator>
 #include <utility>
 #include <algorithm>
+#include <string>
+#include <fstream>
 
 namespace Graph
 {
@@ -62,24 +64,26 @@ namespace Graph
     *******************************************************/
     class Digraph
     {
-    public:
+    private:
+        int vertex_count;
+        int edge_count;
         EdgeSet edges;
         VertexSet vertices;
+        void generate_vertices();
+    public:
         Digraph(void); //Constructor
         Digraph(const Digraph&); //Constructor for copying
+        inline virtual ~Digraph() {};
 
-        void add_edge(Edge e);
-        void remove_edge(Edge e);
-
+        void read_graph_from_file(std::string filename);
+        void add_edge(int source, int destination, int cost);
+        void remove_edge(int source, int destination);
         int get_vertices(void) const;
-        bool is_edge(Vertex a, Vertex b) const;
+        bool is_edge(int source, int destination) const;
         InOutDegree get_degree(int vertex) const;
-        std::vector::iterator outbound_iterator(int vertex) const;
-        std::vector::iterator inbound_edge(int vertex) const;
-        int get_cost(Edge e);
-
-
-
+        std::vector<int>::iterator outbound_iterator(int vertex) const;
+        std::vector<int>::iterator inbound_iterator(int vertex) const;
+        Edge& get_cost(Edge e);
     };
 
 
