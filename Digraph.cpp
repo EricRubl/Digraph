@@ -4,7 +4,7 @@
 
 #include "Digraph.hpp"
 
-namespace Graph {
+namespace cacaGraph {
     Edge::Edge(void) : source(), destination(), cost() {}
 
     Edge::Edge(int source_c, int destination_c, int cost_c) : source(source_c), destination(destination_c),

@@ -12,7 +12,7 @@
 #include <string>
 #include <fstream>
 
-namespace Graph
+namespace cacaGraph
 {
     /*******************************************************
                        EDGE CLASS

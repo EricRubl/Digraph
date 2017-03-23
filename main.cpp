@@ -1,24 +1,27 @@
 #include <iostream>
-#include "Digraph.hpp"
+#include "include/DirectedGraph.hpp"
 #include <windows.h>
 
 int main()
 {
-    auto test_graph = Graph::Digraph();
+    Graph::DirectedGraph<int, int, int> test_graph;
 
     try
     {
-        test_graph.read_graph_from_file(".\\graf.txt");
-        std::cout << test_graph.get_vertices() << '\n';
+        test_graph.read_from_file(".\\graf.txt");
+        std::cout << test_graph.get_vertices_count() << '\n';
         test_graph.remove_edge(0, 0);
         if(test_graph.is_edge(0, 0))
-            std::cout << "Este" << '\n';
+            std::cout << "Este1" << '\n';
         test_graph.add_edge(0, 0, 1);
         if(test_graph.is_edge(0, 0))
-            std::cout << "Este" << '\n';
+            std::cout << "Este2" << '\n';
 
-        auto deg = test_graph.get_degree(3);
-        std::cout << deg.first << " " << deg.second << '\n';
+        Graph::InOutDegree deg = test_graph.get_degree(0);
+        std::cout << (int)deg.first << " " << (int)deg.second;
+        std::cout << std::endl << test_graph.is_edge(4, 0) << " " << test_graph.is_edge(0,1) << '\n' << test_graph.get_edge_cost(1, 3);
+        test_graph.change_cost(1, 3, 69);
+        std::cout <<  " " << test_graph.get_edge_cost(1, 3);
 
     }
     catch (const char* ex)
@@ -26,6 +29,8 @@ int main()
         std::cout << ex;
     }
 
-    system("pause");
+    char c;
+    std::cin >> c;
+
     return 0;
 }
