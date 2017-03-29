@@ -80,6 +80,36 @@ namespace Graph
             out.push_back(key);
         }
 
+        std::vector<key_t>::iterator get_outbound_iterator()
+        {
+            return std::vector<key_t>::iterator();
+        }
+
+        std::vector<key_t>::iterator get_outbound_begin()
+        {
+            return this->out.begin();
+        }
+
+        std::vector<key_t>::iterator get_outbound_end()
+        {
+            return this->out.end();
+        }
+
+        std::vector<key_t>::iterator get_inbound_iterator()
+        {
+            return std::vector<key_t>::iterator();
+        }
+
+        std::vector<key_t>::iterator get_inbound_begin()
+        {
+            return this->in.begin();
+        }
+
+        std::vector<key_t>::iterator get_inbound_end()
+        {
+            return this->in.end();
+        }
+
         bool operator<(const Vertex<key_t, value_t>& rhs) const
         {
             return this->value < rhs.get_value();
@@ -109,7 +139,6 @@ namespace Graph
         {
             return not (rhs.get_value() == this->get_value());
         }
-
     };
 }
 
