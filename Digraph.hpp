@@ -5,14 +5,9 @@
 #ifndef DIGRAPH_DIGRAPH_HPP
 #define DIGRAPH_DIGRAPH_HPP
 
-#include <vector>
-#include <iterator>
-#include <utility>
-#include <algorithm>
-#include <string>
-#include <fstream>
+#include <set>
 
-namespace cacaGraph
+namespace Graph
 {
     /*******************************************************
                        EDGE CLASS
@@ -26,9 +21,7 @@ namespace cacaGraph
         Edge(void);
         Edge(const Edge&);
         Edge(int, int, int);
-        Edge& operator=(int);
-        Edge& operator=(Edge);
-
+        //TODO
         Edge& operator+=(int);
         Edge& operator-=(int);
         Edge& operator--(void);
@@ -37,17 +30,8 @@ namespace cacaGraph
         Edge operator++(int);
     };
 
-    struct Vertex
-    {
-    public:
-        std::vector<int> in;
-        std::vector<int> out;
-
-        Vertex(void);
-        Vertex(const Vertex&);
-    };
-
     //non-member non-friend operators
+    //TODO
     bool operator==(Edge, Edge);
     bool operator!=(Edge, Edge);
 
@@ -55,38 +39,22 @@ namespace cacaGraph
                          DEFINES
     *******************************************************/
 
-    using EdgeSet = std::vector<Edge>;
-    using VertexSet = std::vector<Vertex>;
-    using InOutDegree = std::pair<int, int>;
+    using EdgeSet = std::set<Edge>;
 
     /*******************************************************
                          DIGRAPH CLASS
     *******************************************************/
     class Digraph
     {
-    private:
-        int vertex_count;
-        int edge_count;
-        EdgeSet edges;
-        VertexSet vertices;
-        void generate_vertices();
     public:
         Digraph(void); //Constructor
         Digraph(const Digraph&); //Constructor for copying
-        inline virtual ~Digraph() {};
+    private:
+        EdgeSet edges;
 
-        void read_graph_from_file(std::string filename);
-        void add_edge(int source, int destination, int cost);
-        void remove_edge(int source, int destination);
-        int get_vertices(void) const;
-        bool is_edge(int source, int destination) const;
-        InOutDegree get_degree(int vertex) const;
-        std::vector<int>::iterator outbound_iterator(int vertex) const;
-        std::vector<int>::iterator inbound_iterator(int vertex) const;
-        Edge& get_cost(Edge e);
+
+
     };
-
-
 }
 
 
