@@ -31,7 +31,6 @@ namespace Graph
         {
             return this->edges;
         }
-
         virtual std::map<key_type, Graph::Vertex<key_type, vertex_cost_type>> get_vertices() const
         {
             return this->vertices;

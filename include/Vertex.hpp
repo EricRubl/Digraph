@@ -80,32 +80,32 @@ namespace Graph
             out.push_back(key);
         }
 
-        std::vector<key_t>::iterator get_outbound_iterator()
+        typename std::vector<key_t>::iterator get_outbound_iterator()
         {
-            return std::vector<key_t>::iterator();
+            return typename std::vector<key_t>::iterator();
         }
 
-        std::vector<key_t>::iterator get_outbound_begin()
+        typename std::vector<key_t>::iterator get_outbound_begin()
         {
             return this->out.begin();
         }
 
-        std::vector<key_t>::iterator get_outbound_end()
+        typename std::vector<key_t>::iterator get_outbound_end()
         {
             return this->out.end();
         }
 
-        std::vector<key_t>::iterator get_inbound_iterator()
+        typename std::vector<key_t>::iterator get_inbound_iterator()
         {
             return std::vector<key_t>::iterator();
         }
 
-        std::vector<key_t>::iterator get_inbound_begin()
+        typename std::vector<key_t>::iterator get_inbound_begin()
         {
             return this->in.begin();
         }
 
-        std::vector<key_t>::iterator get_inbound_end()
+        typename std::vector<key_t>::iterator get_inbound_end()
         {
             return this->in.end();
         }
