@@ -90,6 +90,21 @@ namespace Graph
 
             throw "Edge does not exist!";
         }
+
+        virtual typename std::map<key_type, Graph::Vertex<key_type, vertex_cost_type>>::iterator get_vertices_begin()
+        {
+            return this->vertices.begin();
+        }
+
+        virtual typename std::map<key_type, Graph::Vertex<key_type, vertex_cost_type>>::iterator get_vertices_end()
+        {
+            return this->vertices.end();
+        }
+
+        virtual size_t get_vertices_size()
+        {
+            return this->vertices.size();
+        }
     };
 
     template <typename key_type, typename edge_cost_type, typename vertex_cost_type>
