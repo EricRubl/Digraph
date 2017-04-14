@@ -28,11 +28,11 @@ namespace Graph
             Edge<key_type, edge_cost_type> e(source, destination, cost);
             Edge<key_type, edge_cost_type> e2(destination, source, cost);
 
-            if(std::find(this->edges.begin(), this->edges.end(), e) != this->edges.end())
-                throw "Edge already exists!";
+           // if(std::find(this->edges.begin(), this->edges.end(), e) != this->edges.end())
+               // throw "Edge already exists!";
 
-            if(std::find(this->edges.begin(), this->edges.end(), e2) != this->edges.end())
-                throw "Edge already exists!";
+            //if(std::find(this->edges.begin(), this->edges.end(), e2) != this->edges.end())
+                //throw "Edge already exists!";
 
             this->edges.push_back(e);
             this->vertices[source].add_out(destination);
@@ -151,50 +151,33 @@ namespace Graph
             IGraphT::get_vertices_size();
         }
 
-        std::vector<key_type> befese(key_type incepe)
+        std::vector<key_type> BFS(key_type start)
         {
-            std::cout << "Starting algorithm.";
-            std::queue<Vertex<key_type, vertex_cost_type>> bfs; // coada care sustine algoritmul bfs
-            std::vector<key_type> vk; // retur
+            std::queue<Vertex<key_type, vertex_cost_type>> bfs;
+            std::vector<key_type> vk;
             std::vector<bool> viz(this->vertices.size());
-            typename std::vector<key_type>::iterator it; // iterator pe muchiile unui vertex
+            typename std::vector<key_type>::iterator it;
 
-            std::cout << "Added vertices: ";
+            viz[start] = true;
 
-            viz[incepe] = true;
-            // pentru fiecare muchie din vertexul cu cheia "incepe"
-            for (it = this->vertices[incepe].get_outbound_begin(); it != this->vertices[incepe].get_outbound_end(); ++it)
+            for (it = this->vertices[start].get_outbound_begin(); it not_eq this->vertices[start].get_outbound_end(); ++it)
+                bfs.push(this->vertices[*it]);
+
+            while (!bfs.empty())
             {
-                bfs.push(this->vertices[*it]); // se adauga in coada vertexurile destinatie
-
-                // cautam in graf vertexul respectiv pentru a-l afisa ( debugging )
-                //std::cout << *it ;
-            }
-
-            // cat timp avem vertexuri in coada
-            while ( !bfs.empty() )
-            {
-                Vertex<key_type, vertex_cost_type> cur = bfs.front(); // luam primul din coada
+                Vertex<key_type, vertex_cost_type> cur = bfs.front();
 
                 for(int i = 0; i < this->vertices.size(); ++i)
-                {
                     if(this->vertices.find(i)->second == cur)
                     {
                         viz[i] = true;
                         break;
                     }
-                }
 
-                // adaugam destinatiile lui respectiv
-                for ( it = cur.get_outbound_begin(); it != cur.get_outbound_end(); ++it )
-                {
+                for (it = cur.get_outbound_begin(); it not_eq cur.get_outbound_end(); ++it)
                     if ( viz[*it] == false )
-                    {
                         bfs.push(this->vertices[*it]);
-                    }
-                }
 
-                // il eliminam ca am gatat cu el
                 bfs.pop();
             }
             for (int i = 0; i < viz.size(); ++i)

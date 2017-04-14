@@ -5,12 +5,12 @@
 
 int main()
 {
-    /*
+
     Graph::DirectedGraph<int, int, int> test_graph;
 
     try
     {
-        test_graph.read_from_file("..\\graf.txt");
+        test_graph.read_from_file("..\\graph1m.txt");
         std::cout << "Number of vertices: " << test_graph.get_vertices_count() << '\n';
         test_graph.remove_edge(0, 0);
         std::cout << "\nRemoving edge from 0 to 0!\n";
@@ -33,13 +33,16 @@ int main()
     {
         std::cout << ex;
     }
-    */
+
+
+    std::cout << "\n\n\nLAB 2\n\n\n";
+
 
     Graph::UndirectedGraph<int, int, int> test_graph_bfs;
 
     try
     {
-        test_graph_bfs.read_from_file("..\\grafn.txt");
+        test_graph_bfs.read_from_file("..\\graph1m.txt");
     }
     catch(const char* ex)
     {
@@ -50,14 +53,12 @@ int main()
 
 
     int ctr = 0;
-    for( auto it = test_graph_bfs.get_vertices_begin(); it != test_graph_bfs.get_vertices_end(); ++it)
+    for(auto it = test_graph_bfs.get_vertices_begin(); it not_eq test_graph_bfs.get_vertices_end(); ++it)
     {
-        std::cout << it->first;
-
         if ( !fr[it->first] )
         {
-            auto a = test_graph_bfs.befese(it->first);
-            std::cout << "Group " << ctr << " :\n";
+            auto a = test_graph_bfs.BFS(it->first);
+            std::cout << "\nGroup " << ctr << ":\n";
             for (int i = 0; i < a.size(); ++i)
             {
                 std::cout << a[i] << ' ';

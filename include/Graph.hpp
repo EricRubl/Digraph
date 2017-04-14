@@ -43,8 +43,8 @@ namespace Graph
 
         virtual void add_vertex(const key_type& key, const vertex_cost_type& value = 0)
         {
-            if(vertices.find(key) != vertices.end())
-                throw "Duplicate vertex!";
+            //if(vertices.find(key) != vertices.end())
+               // throw "Duplicate vertex!";
             vertices.insert(std::pair<key_type, Graph::Vertex<key_type, vertex_cost_type>> (key, Vertex<key_type, vertex_cost_type>(value)));
         }
 

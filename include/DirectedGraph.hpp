@@ -26,8 +26,8 @@ namespace Graph
         virtual void add_edge(const key_type& source, const key_type& destination, const edge_cost_type& cost) override
         {
             Edge<key_type, edge_cost_type> e(source, destination, cost);
-            if(std::find(this->edges.begin(), this->edges.end(), e) != this->edges.end())
-                throw "Edge already exists!";
+            //if(std::find(this->edges.begin(), this->edges.end(), e) != this->edges.end())
+              //  throw "Edge already exists!";
             this->edges.push_back(e);
             this->vertices[source].add_out(destination);
             this->vertices[destination].add_in(source);

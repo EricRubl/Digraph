@@ -22,10 +22,20 @@ namespace Graph
     public:
         Vertex(void) : value(), in(), out() {}
         Vertex(const value_t& value) : value(value), in(), out() {}
-        Vertex(const Vertex<key_t, value_t>& other) : value(other.get_value()), in(other.get_in()), out(other.get_out()) {}
+        Vertex(const Vertex<key_t, value_t>& other) : value(other.get_value()), in(other.get_in_v()), out(other.get_out_v()) {}
         ~Vertex() = default;
 
 
+
+        std::vector<key_t> get_in_v() const
+        {
+            return this->in;
+        }
+
+        std::vector<key_t> get_out_v() const
+        {
+            return this->out;
+        }
 
         value_t get_value() const
         {
@@ -132,13 +142,24 @@ namespace Graph
 
         bool operator==(const Vertex<key_t, value_t>& rhs) const
         {
-            return this->value == rhs.get_value();
+            return this->value == rhs.get_value() and this->in == rhs.get_in_v() and this->out == rhs.get_out_v();
+
         }
 
         bool operator!=(const Vertex<key_t, value_t>& rhs) const
         {
             return not (rhs.get_value() == this->get_value());
         }
+
+
+        Vertex<key_t, value_t>& operator=(const Vertex<key_t, value_t>& other)
+        {
+            this->value = other.get_value();
+            this->in = other.get_in_v();
+            this->out = other.get_out_v();
+            return *this;
+        };
+
     };
 }
 
