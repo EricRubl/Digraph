@@ -82,7 +82,7 @@ namespace Graph
                 int vertices_count, edge_count;
                 graph_reader >> vertices_count;
                 for(int i = 0; i < vertices_count; ++i) //TODO typename for key
-                    this->add_vertex(i);
+                    this->add_vertex(i, i);
                 graph_reader >> edge_count;
                 for(int i = 0; i < edge_count; ++i)
                 {
@@ -166,13 +166,7 @@ namespace Graph
             while (!bfs.empty())
             {
                 Vertex<key_type, vertex_cost_type> cur = bfs.front();
-
-                for(int i = 0; i < this->vertices.size(); ++i)
-                    if(this->vertices.find(i)->second == cur)
-                    {
-                        viz[i] = true;
-                        break;
-                    }
+                viz[cur.get_value()] = true;
 
                 for (it = cur.get_outbound_begin(); it not_eq cur.get_outbound_end(); ++it)
                     if ( viz[*it] == false )

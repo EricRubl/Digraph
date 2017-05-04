@@ -10,7 +10,7 @@ int main()
 
     try
     {
-        test_graph.read_from_file("..\\graph1m.txt");
+        test_graph.read_from_file("..\\graf.txt");
         std::cout << "Number of vertices: " << test_graph.get_vertices_count() << '\n';
         test_graph.remove_edge(0, 0);
         std::cout << "\nRemoving edge from 0 to 0!\n";
@@ -34,6 +34,9 @@ int main()
         std::cout << ex;
     }
 
+    ////////////////////////////////////////////////////////////////////////////////
+    //                                LAB 2                                       //
+    ////////////////////////////////////////////////////////////////////////////////
 
     std::cout << "\n\n\nLAB 2\n\n\n";
 
@@ -42,7 +45,7 @@ int main()
 
     try
     {
-        test_graph_bfs.read_from_file("..\\graph1m.txt");
+        test_graph_bfs.read_from_file("..\\grafn.txt");
     }
     catch(const char* ex)
     {
@@ -50,7 +53,6 @@ int main()
     }
 
     std::vector<bool> fr(test_graph_bfs.get_vertices_size());
-
 
     int ctr = 0;
     for(auto it = test_graph_bfs.get_vertices_begin(); it not_eq test_graph_bfs.get_vertices_end(); ++it)
