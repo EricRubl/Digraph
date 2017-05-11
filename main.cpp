@@ -71,7 +71,8 @@ int main()
         ctr++;
     }
 
-    test_graph_bfs.Djikstra(2);
+    std::cout << test_graph_bfs.Djikstra(0, 4);
+
 
     char c;
     std::cin >> c;

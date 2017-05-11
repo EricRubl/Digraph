@@ -9,6 +9,8 @@
 #include <fstream>
 #include <algorithm>
 #include <queue>
+#include <stack>
+#include <string>
 #include "Graph.hpp"
 
 #define INF 0x3f3f3f3f
@@ -184,12 +186,15 @@ namespace Graph
             return vk;
         }
 
-        std::vector<edge_cost_type> Djikstra(key_type src)
+        std::string Djikstra(key_type src, key_type dest)
         {
             std::priority_queue<std::pair<edge_cost_type, key_type>, std::vector<std::pair<edge_cost_type, key_type>>, std::greater<std::pair<edge_cost_type, key_type>>> pq;
-            std::vector<edge_cost_type> dist(this->vertices.size(), INF);
-            pq.push(std::make_pair(0, src));
+            std::vector<edge_cost_type> dist(this->vertices.size(), INT_MAX);
+            std::vector<bool> spt(this->vertices.size(), false);
+            std::vector<key_type> parent(this->vertices.size(), -1);
             dist[src] = 0;
+            pq.push(std::make_pair(0, src));
+
             while(!pq.empty())
             {
                 key_type u = pq.top().second;
@@ -205,11 +210,39 @@ namespace Graph
                         pq.push(std::make_pair(dist[v], v));
                     }
                 }
-
             }
-            return dist;
-        }
 
+            for(auto ctr = 0; ctr < this->get_vertices_count() - 1; ++ctr)
+            {
+                int u;
+                int min = INT_MAX;
+                for(int v = 0; v < this->get_vertices_count(); ++v)
+                    if(!spt[v] and dist[v] < min)
+                    {
+                        min = dist[v];
+                        u = v;
+                    }
+                spt[u] = true;
+
+                for(auto it = this->vertices[u].get_outbound_begin(); it not_eq this->vertices[u].get_outbound_end(); ++it)
+                    if(!spt[*it] and dist[*it] >= dist[u] + this->get_edge_cost(u, *it))
+                        parent[*it] = u;
+            }
+
+            std::string print;
+            print += "From vertex " + std::to_string(src) + " to " + std::to_string(dest) + "\n\n";
+            std::stack<key_type> path;
+            key_type step = dest;
+            while((step = parent[step]) not_eq -1)
+                path.push(step);
+            while(!path.empty())
+            {
+                print += std::to_string(path.top()) + " -> ";
+                path.pop();
+            }
+            print += std::to_string(dest);
+            return print;
+        }
     };
 }
 
