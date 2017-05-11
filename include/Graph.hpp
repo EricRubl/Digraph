@@ -85,7 +85,7 @@ namespace Graph
         virtual edge_cost_type get_edge_cost(const key_type& source, const key_type& destination)
         {
             for(Edge<key_type, edge_cost_type> e : edges)
-                if(e.get_source() == source and e.get_destination() == destination)
+                if((e.get_source() == source and e.get_destination() == destination) or (e.get_source() == destination and e.get_destination() == source))
                     return e.get_cost();
 
             throw "Edge does not exist!";

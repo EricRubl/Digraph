@@ -5,11 +5,13 @@
 #ifndef DIGRAPH_UNDIRECTEDGRAPH_HPP
 #define DIGRAPH_UNDIRECTEDGRAPH_HPP
 
+
 #include <fstream>
 #include <algorithm>
 #include <queue>
 #include "Graph.hpp"
 
+#define INF 0x3f3f3f3f
 
 namespace Graph
 {
@@ -180,6 +182,32 @@ namespace Graph
                     vk.push_back(i);
             }
             return vk;
+        }
+
+        std::vector<edge_cost_type> Djikstra(key_type src)
+        {
+            std::priority_queue<std::pair<edge_cost_type, key_type>, std::vector<std::pair<edge_cost_type, key_type>>, std::greater<std::pair<edge_cost_type, key_type>>> pq;
+            std::vector<edge_cost_type> dist(this->vertices.size(), INF);
+            pq.push(std::make_pair(0, src));
+            dist[src] = 0;
+            while(!pq.empty())
+            {
+                key_type u = pq.top().second;
+                pq.pop();
+                for(auto it = this->vertices[u].get_outbound_begin(); it not_eq this->vertices[u].get_outbound_end(); ++it)
+                {
+                    key_type v = *it;
+                    edge_cost_type w = this->get_edge_cost(u, v);
+
+                    if(dist[v] > dist[u] + w)
+                    {
+                        dist[v] = dist[u] + w;
+                        pq.push(std::make_pair(dist[v], v));
+                    }
+                }
+
+            }
+            return dist;
         }
 
     };
