@@ -240,6 +240,7 @@ namespace Graph
                 print += std::to_string(path.top()) + " -> ";
                 path.pop();
             }
+
             print += std::to_string(dest);
             return print;
         }
