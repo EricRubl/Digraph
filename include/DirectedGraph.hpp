@@ -83,7 +83,7 @@ namespace Graph
             throw "File does not exists!";
         }
 
-        virtual unsigned long long get_vertices_count() const
+        virtual const unsigned long long get_vertices_count() const
         {
             IGraphT::get_vertices_count();
         }

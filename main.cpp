@@ -71,8 +71,12 @@ int main()
         ctr++;
     }
 
-    std::cout << test_graph_bfs.Djikstra(0, 4);
+    std::cout << test_graph_bfs.Djikstra(0, 4) << '\n'; // adaugat newline
 
+
+    auto mst = test_graph_bfs.minimumSpanningTree();
+
+    auto ham = test_graph_bfs.Hamiltonian();
 
     char c;
     std::cin >> c;

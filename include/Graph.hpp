@@ -55,7 +55,7 @@ namespace Graph
             vertices.erase(key);
         }
 
-        virtual unsigned long long get_vertices_count() const
+        virtual const unsigned long long get_vertices_count() const
         {
             return this->vertices.size();
         }

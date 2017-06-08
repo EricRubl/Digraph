@@ -121,6 +121,12 @@ namespace Graph
         return not (a.get_source() == b.get_source() and a.get_destination() == b.get_destination() and a.get_cost() == b.get_cost());
     }
 
+    template <typename key_t, typename cost_t>
+    inline bool operator<(const Edge<key_t, cost_t>& a, const Edge<key_t, cost_t>& b)
+    {
+        return a.get_cost() < b.get_cost();
+    };
+
 }
 
 
